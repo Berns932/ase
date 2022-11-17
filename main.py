@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 from scipy import stats
 
+# hOLA!
+
 an=0.40     #Ancho para gráficas
 
 # Se carga el dataframe
