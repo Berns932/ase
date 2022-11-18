@@ -1,11 +1,10 @@
 # Se añaden las bibliotecas que se usarán probalemente
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sb
-from scipy import stats
-
-# PROBANDO UN SEGUNDO COMMIT
+from sklearn import metrics
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 an=0.40     #Ancho para gráficas
 
@@ -15,7 +14,8 @@ deaths = pd.read_csv(r'C:\Users\berja\Desktop\Mortalidad_08.csv')   #Número de 
 pob = pd.read_csv(r"C:\Users\berja\Desktop\Población2020.csv")      #Población total al fin de las décadas
 gStudies=pd.read_csv(r"C:\Users\berja\Desktop\Educacion_05(1).csv")   #grado Promedio estudios
 muestraS=pd.read_csv(r"C:\Users\berja\Desktop\AñosEstudiosMuestra.csv")   #grado Promedio estudios muestra
-muestraD=pd.read_csv(r"C:\Users\berja\Desktop\HomicidiosMuestra.csv")   #Número de homicidios dolosos muestra
+muestraD=pd.read_csv(r"C:\Users\berja\Desktop\HomicidiosMuestra.csv")
+muestraTH=pd.read_csv(r"C:\Users\berja\iCloudDrive\Desktop\HomsMuestraTot.csv")   #Número de homicidios dolosos muestra
 deathsAge=pd.read_csv(r"C:\Users\berja\Desktop\DefuncionesPorEdades.csv")   #tasa de crimen
 CDMX_HM=pd.read_csv(r"C:\Users\berja\Desktop\HvsM_CDMX.csv")
 CHIH_HM= pd.read_csv(r"C:\Users\berja\Desktop\HvsM_CHIH.csv")
@@ -30,7 +30,6 @@ pob=pob.drop([0],axis=0)
 gStudies.drop([0],axis=0, inplace= True)
 gStudies=gStudies.drop(gStudies.index[32:], axis=0)
 
-"""
 #Se crea una gráfica de la población en 2010 y 2020
 x = np.arange(len(pob['Entidad Federativa']))
 fig, ax = plt.subplots()
@@ -244,7 +243,7 @@ labels = MEX_HM['Género']
 plt.pie(data, labels = labels, autopct='%.0f%%')
 plt.title('Homicidios  Estado de México (MEX)', fontsize=20)
 plt.show()
-"""
+
 
 x = np.arange(len(Income['Año']))
 y1 = Income['CDMX']
@@ -274,5 +273,54 @@ ax.set_xticklabels(Income['Año'],rotation=90)
 plt.title("Ingresos al año Nivel Nacional")
 plt.xlabel("Años")
 plt.ylabel("Cantidad (BdP)")
+plt.legend()
+plt.show()
+
+x = np.arange(len(muestraTH['Año']))
+y1 = muestraTH['CHIH']
+fig, ax = plt.subplots()
+plt.plot(x,y1, label='Total')
+plt.xticks()
+ax.set_xticks(x)
+ax.set_xticklabels(muestraTH['Año'],rotation=90)
+plt.title("Homicidios para Chihuahua (CHIH)")
+plt.xlabel("Años")
+plt.ylabel("Cant. Homicidios")
+plt.legend()
+plt.show()
+
+y1 = muestraTH['CDMX']
+fig, ax = plt.subplots()
+plt.plot(x,y1, label='Total')
+plt.xticks()
+ax.set_xticks(x)
+ax.set_xticklabels(muestraTH['Año'],rotation=90)
+plt.title("Homicidios para la Ciudad de México (CDMX)")
+plt.xlabel("Años")
+plt.ylabel("Cant. Homicidios")
+plt.legend()
+plt.show()
+
+y1 = muestraTH['GTO']
+fig, ax = plt.subplots()
+plt.plot(x,y1, label='Total')
+plt.xticks()
+ax.set_xticks(x)
+ax.set_xticklabels(muestraTH['Año'],rotation=90)
+plt.title("Homicidios para Guanajuato (GTO)")
+plt.xlabel("Años")
+plt.ylabel("Cant. Homicidios")
+plt.legend()
+plt.show()
+
+y1 = muestraTH['MEX']
+fig, ax = plt.subplots()
+plt.plot(x,y1, label='Total')
+plt.xticks()
+ax.set_xticks(x)
+ax.set_xticklabels(muestraTH['Año'],rotation=90)
+plt.title("Homicidios para el Estado de México (MEX)")
+plt.xlabel("Años")
+plt.ylabel("Cant. Homicidios")
 plt.legend()
 plt.show()
