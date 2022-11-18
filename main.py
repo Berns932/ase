@@ -22,6 +22,7 @@ CHIH_HM= pd.read_csv(r"C:\Users\berja\Desktop\HvsM_CHIH.csv")
 GTO_HM = pd.read_csv(r"C:\Users\berja\Desktop\HvsM_GTO.csv")
 MEX_HM = pd.read_csv(r"C:\Users\berja\Desktop\HvsM_MÉX.csv")
 Income = pd.read_csv(r"C:\Users\berja\Desktop\IngresosMuestra.csv")
+NAC_HM = pd.read_csv(r"C:\Users\berja\iCloudDrive\Desktop\HvsM_Nac.csv")
 
 #Se eliminan las filas que no son necesarias
 died=died.drop([0,33], axis=0)
@@ -323,4 +324,10 @@ plt.title("Homicidios para el Estado de México (MEX)")
 plt.xlabel("Años")
 plt.ylabel("Cant. Homicidios")
 plt.legend()
+plt.show()
+
+data = NAC_HM['Total']
+labels = NAC_HM['Género']
+plt.pie(data, labels = labels, autopct='%.0f%%')
+plt.title('Homicidios Nacionales', fontsize=20)
 plt.show()
